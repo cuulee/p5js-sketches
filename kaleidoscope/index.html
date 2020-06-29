@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>p5.js recording with CCapture example</title>
+  </head>
+  <body>
+    <h1>p5.js recording with CCapture example</h1>
+    <p>This page demonstrates how to record a <a href="https://p5js.org/">p5.js</a> animation using <a href="https://github.com/spite/ccapture.js">ccapture</a>.</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+    <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+    <script>
+
+        // the frame rate
+        var fps = 60;
+
+        // the canvas capturer instance
+        var capturer = new CCapture({ format: 'png', framerate: fps });
+
+        let palette = [
+            '#DD7373',
+            '#3B3561',
+            '#EAD94C',
+            '#D1D1D1',
+            '#51A3A3'
+        ]
+        
+        let n = 16;
+        let t = 0;
+        
+        function setup()
+        {
+            createCanvas(500, 500);
+            //noLoop();
+            colorMode(HSB);
+            
+            trace = createGraphics(width, height);
+            trace.colorMode(HSB)
+            
+            texture_graphics = createGraphics(width, height);
+            //texture_graphics.colorMode(HSB);
+            drawNoiseBackground(100000, texture_graphics);
+
+            // this is optional, but lets us see how the animation will look in browser.
+            frameRate(fps);
+
+            // start the recording
+            capturer.start();
+        }
+        
+        function draw() 
+        {
+            t += .5;
+            
+            background(255);
+            
+            image(trace, 0, 0);
+            trace.background(255);
+            
+            for(let i = 0; i < 5; i++)
+            {
+                randomSeed(42);
+                
+                push();
+                trace.push();
+        
+                    translate(width/2, height/2);
+                    trace.translate(width/2, height/2);
+        
+                    rotate(i*TWO_PI/5);
+                    trace.rotate(i*TWO_PI/5);
+        
+                    translate(-width/2, -height/2);
+                    trace.translate(-width/2, -height/2);
+        
+                    for(let j = 0; j < n; j++)
+                    {
+                        let xs = random(width)
+                        let ys = random(width)
+                        
+                        let x = xs + .02*width*sin(.2*t);
+                        let y = (ys + 5*t) % width;
+                        
+                        let r = random(.1*height);
+                        let c = palette[int(random(palette.length))]//random(255);
+                        fill(c)
+                        
+                        if(random() < .5)
+                        {
+                            ellipse(x, y, r, r);
+                        }
+                        else
+                        {
+                            push();
+                            translate(x, y);
+                            rotate(TWO_PI*random());
+                            translate(-x, -y);
+                            rect(x, y, r, r);
+                            pop();
+                        }
+                        
+                        trace.stroke(50);
+                        trace.noFill();
+                        trace.beginShape();
+                        for(let t0 = t-20; t0 <= t; t0++)
+                        {
+                            let y0 = y;
+                            x = xs + .02*width*sin(.2*t0);
+                            y = (ys + 5*t0) % width;
+                            
+                            if(abs(y - y0) > .2*width)
+                            {
+                                break;
+                            }
+                            
+                            trace.curveVertex(x, y)
+                        }
+                        trace.endShape();
+                    }
+                
+                pop();
+                trace.pop();
+            }
+            
+            image(texture_graphics, 0, 0);
+
+            if (t >= 100) {
+                noLoop();
+                console.log('finished recording.');
+                capturer.stop();
+                capturer.save();
+                return;
+            }
+
+            // handle saving the frame
+            console.log('capturing frame');
+            capturer.capture(document.getElementById('defaultCanvas0'));
+        }
+        
+        function drawNoiseBackground(_n, _graphics)
+        {
+          let c = color(0, 0, 0, .02);
+          for (let i = 0; i < _n; i++)
+          {
+            let x = random(1) * width;
+            let y = random(1) * height;
+            let w = random(1, 4);
+            let h = random(1, 4);
+            _graphics.noStroke();
+            _graphics.fill(c);
+            _graphics.ellipse(x, y, w, h);
+          }
+        }
+    </script>
+  </body>
+</html>
