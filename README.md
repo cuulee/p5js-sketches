@@ -18,3 +18,7 @@
 #### [Bubbles](https://marceloprates.github.io/p5js-sketches/bubbles/)
 
 <img src="bubbles/sample.png" width="300"/>
+
+#### [Abstract 23/05/20](https://marceloprates.github.io/p5js-sketches/abstract_23_05_20/)
+
+<img src="abstract_23_05_20/sample.png" width="400"/>
