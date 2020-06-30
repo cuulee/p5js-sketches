@@ -1,22 +1,39 @@
+<!-- pass in the ID of the container element -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>p5.js recording with CCapture example</title>
-  </head>
-  <body>
-    <h1>p5.js recording with CCapture example</h1>
-    <p>This page demonstrates how to record a <a href="https://p5js.org/">p5.js</a> animation using <a href="https://github.com/spite/ccapture.js">ccapture</a>.</p>
+
+<head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
-    <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+
+    <style>
+
+        /* style.css */
+
+        body{
+            font-family: "Computer Modern Sans", sans-serif;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        .sketch-holder{
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <title>Kaleidoscope</title>
+    <h1>Kaleidoscope</h1>
+    
+    <div id="sketch-holder" class="sketch-holder">
+    </div>
+
     <script>
-
-        // the frame rate
-        var fps = 60;
-
-        // the canvas capturer instance
-        var capturer = new CCapture({ format: 'png', framerate: fps });
 
         let palette = [
             '#DD7373',
@@ -25,30 +42,28 @@
             '#D1D1D1',
             '#51A3A3'
         ]
-        
+
+        // n: Number of elements in the scene
         let n = 16;
+
+        // t: time
         let t = 0;
-        
+
         function setup()
         {
-            createCanvas(500, 500);
-            //noLoop();
-            colorMode(HSB);
+            // Create canvas
+            var canvas = createCanvas(600, 600);
+
+            canvas.parent('sketch-holder');
             
+            // Plot the "trace" of each object on a different graphics object
             trace = createGraphics(width, height);
-            trace.colorMode(HSB)
             
+            // Plot the "paper texture" on a different graphics object
             texture_graphics = createGraphics(width, height);
-            //texture_graphics.colorMode(HSB);
             drawNoiseBackground(100000, texture_graphics);
-
-            // this is optional, but lets us see how the animation will look in browser.
-            frameRate(fps);
-
-            // start the recording
-            capturer.start();
         }
-        
+
         function draw() 
         {
             t += .5;
@@ -64,16 +79,16 @@
                 
                 push();
                 trace.push();
-        
+
                     translate(width/2, height/2);
                     trace.translate(width/2, height/2);
-        
+
                     rotate(i*TWO_PI/5);
                     trace.rotate(i*TWO_PI/5);
-        
+
                     translate(-width/2, -height/2);
                     trace.translate(-width/2, -height/2);
-        
+
                     for(let j = 0; j < n; j++)
                     {
                         let xs = random(width)
@@ -83,7 +98,7 @@
                         let y = (ys + 5*t) % width;
                         
                         let r = random(.1*height);
-                        let c = palette[int(random(palette.length))]//random(255);
+                        let c = palette[int(random(palette.length))]
                         fill(c)
                         
                         if(random() < .5)
@@ -124,34 +139,24 @@
             }
             
             image(texture_graphics, 0, 0);
-
-            if (t >= 100) {
-                noLoop();
-                console.log('finished recording.');
-                capturer.stop();
-                capturer.save();
-                return;
-            }
-
-            // handle saving the frame
-            console.log('capturing frame');
-            capturer.capture(document.getElementById('defaultCanvas0'));
         }
-        
+
         function drawNoiseBackground(_n, _graphics)
         {
-          let c = color(0, 0, 0, .02);
-          for (let i = 0; i < _n; i++)
-          {
-            let x = random(1) * width;
-            let y = random(1) * height;
-            let w = random(1, 4);
-            let h = random(1, 4);
-            _graphics.noStroke();
-            _graphics.fill(c);
-            _graphics.ellipse(x, y, w, h);
-          }
+            let c = color(0, 0, 0, 4);
+            for (let i = 0; i < _n; i++)
+            {
+                let x = random(1) * width;
+                let y = random(1) * height;
+                let w = random(1, 4);
+                let h = random(1, 4);
+                _graphics.noStroke();
+                _graphics.fill(c);
+                _graphics.ellipse(x, y, w, h);
+            }
         }
+        
     </script>
-  </body>
+</body>
+
 </html>
