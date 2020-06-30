@@ -2,4 +2,4 @@
 ## A Repository for my p5.js sketches
 
 ### Sketches:
-* [Kaleidoscope](/kaleidoscope)
+* [Kaleidoscope](https://marceloprates.github.io/p5js-sketches/kaleidoscope/)
