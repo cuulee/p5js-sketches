@@ -9,6 +9,8 @@ let palette = [
 
 var capturer = new CCapture({ format: 'png', framerate: 30 });
 
+var capture = false
+
 var i = 0
 var t = 0
 
@@ -23,7 +25,10 @@ function setup()
     texture_graphics = createGraphics(width, height);
     drawNoiseBackground(100000, texture_graphics);
 
-    capturer.start();
+    if(capture)
+    {
+        capturer.start();
+    }
 }
 
 function draw()
@@ -100,15 +105,18 @@ function draw()
 
     image(texture_graphics, 0, 0)
 
-    if (i >= 4*75)
+    if(capture)
     {
-        noLoop()
-        capturer.stop()
-        capturer.save()
-        return
-    }
+        if (i >= 4*75)
+        {
+            noLoop()
+            capturer.stop()
+            capturer.save()
+            return
+        }
 
-    capturer.capture(document.getElementById('defaultCanvas0'))
+        capturer.capture(document.getElementById('defaultCanvas0'))
+    }
 }
 
 function drawNoiseBackground(_n, _graphics)

@@ -12,7 +12,7 @@ let palette = [
 var capturer = new CCapture({ format: 'png', framerate: 30 });
 
 // Whether to save frames
-var capture = true
+var capture = false
 
 // t is the time variable (useful for making perfectly looping gifs)
 var t = 0
