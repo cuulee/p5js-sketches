@@ -39,3 +39,27 @@
 #### [Abstract 04/07/20](https://marceloprates.github.io/p5js-sketches/abstract_04_07_20/)
 
 <img src="abstract_04_07_20/sample.gif" width="400"/>
+
+#### [Abstract 09/07/20](https://marceloprates.github.io/p5js-sketches/abstract_090720/)
+
+<img src="abstract_090720/sample.gif" width="400"/>
+
+#### [Windows 3000 Loading Screen](https://marceloprates.github.io/p5js-sketches/windows_3000_loading_screen/)
+
+<img src="windows_3000_loading_screen/sample.gif" width="400"/>
+
+#### [Abstract 11/07/20 - 1](https://marceloprates.github.io/p5js-sketches/110720_1/)
+
+<img src="abstract_110720_1/sample.gif" width="400"/>
+
+#### [Abstract 11/07/20 - 2](https://marceloprates.github.io/p5js-sketches/110720_2/)
+
+<img src="abstract_110720_2/sample.gif" width="400"/>
+
+#### [Glyphs](https://marceloprates.github.io/p5js-sketches/glyphs/)
+
+<img src="glyphs/sample.png" width="400"/>
+
+#### [Glyphs - Runes](https://marceloprates.github.io/p5js-sketches/glyphs_runes/)
+
+<img src="glyphs_runes/sample.png" width="400"/>
