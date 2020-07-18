@@ -1,6 +1,11 @@
 # p5js-sketches
 ## A Repository for my p5.js sketches
 
+### Template for exporting sketches as perfectly looping gifs
+
+#### [Template](https://marceloprates.github.io/p5js-sketches/template/)
+<img src="template/sample.gif" width="400"/>
+
 ### Sketches:
 
 #### [Kaleidoscope](https://marceloprates.github.io/p5js-sketches/kaleidoscope/)
