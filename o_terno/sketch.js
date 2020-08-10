@@ -59,7 +59,7 @@ let beat = false;
 var capturer = new CCapture({ format: 'png', framerate: 30 });
 
 // Whether to save frames
-var capture = true
+var capture = false
 
 function preload() 
 {
@@ -73,8 +73,6 @@ function setup()
   frameRate(30)
 
   amplitude = new p5.Amplitude();
-
-  soundFile.play();
 
   var smoothing = 0.6;
   fft = new p5.FFT(smoothing, 1024);
@@ -94,10 +92,13 @@ function setup()
   }
 
   soundFile.onended(endCapture);
+
+  soundFile.play();
 }
 
 function draw() 
 {
+
   let t = 1e-4*millis()
 
   var level = amplitude.getLevel();
@@ -140,6 +141,7 @@ function draw()
   // Capture frame
   if(capture)
   {
+      //print(frameCount)
       capturer.capture(document.getElementById('defaultCanvas0'))
   }
 
