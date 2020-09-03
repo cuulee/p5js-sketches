@@ -38,10 +38,10 @@ function draw()
     rect(0, 0, width, height)
 
     filter(BLUR, 3)
-		filter(ERODE)
+	filter(ERODE)
 	
     // Imprint the "paper texture" after everything is drawn
-    image(texture_graphics1, 0, 0)
+    //image(texture_graphics1, 0, 0)
 
 	stroke(255)
     strokeWeight(6)

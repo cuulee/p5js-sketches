@@ -1,9 +1,7 @@
 
 let palette = [
     '#000',
-    '#fff',
-    '#fff',
-    '#fa9'
+    '#ddd',
 ]
 
 // t is the time variable (useful for making perfectly looping gifs)
@@ -16,9 +14,7 @@ function setup()
     canvas.parent('sketch-holder');
 
     // Plot the "paper texture" on a different graphics object
-    texture_graphics1 = createGraphics(width, height);
-    texture_graphics2 = createGraphics(width, height);
-    drawNoiseBackground1(100000, texture_graphics1);
+	texture_graphics2 = createGraphics(width, height);
     drawNoiseBackground2(100000, texture_graphics2);
 	
     frameRate(1)
@@ -32,19 +28,16 @@ function draw()
 
     let n = 8
 
-    for(let i = 0; i < n; i++)
+    for(let i = 1; i < n; i++)
     {
         stroke(255)
-        strokeWeight(2)
+        strokeWeight(1)
         line(width*i/n, 0, width*i/n, height)
         line(0, height*i/n, width, height*i/n)
     }
 
     filter(BLUR, 3)
 	filter(ERODE)
-	
-	// Imprint the "paper texture" after everything is drawn
-    image(texture_graphics1, 0, 0)
 
     stroke(palette[1])
     strokeWeight(5)
@@ -115,24 +108,9 @@ function irregular_stroke(x0, y0, x1, y1, n = 4)
     endShape()
 }
 
-function drawNoiseBackground1(_n, _graphics)
-{
-    let c = color(255, 5);
-    for (let i = 0; i < _n; i++)
-    {
-        let x = random(1) * width;
-        let y = random(1) * height;
-        let w = random(1, 6);
-        let h = random(1, 6);
-        _graphics.noStroke();
-        _graphics.fill(c);
-        _graphics.ellipse(x, y, w, h);
-    }
-}
-
 function drawNoiseBackground2(_n, _graphics)
 {
-    let c = color(0, 20);
+    let c = color(0, 30);
     for (let i = 0; i < _n; i++)
     {
         let x = random(1) * width;
