@@ -29,25 +29,6 @@ function draw()
         sierpinski(4)
     pop()
 
-    // Draw border
-    noFill()
-    stroke(0)
-    let n = 10
-    let pad
-    for(let i = 0; i < n; i++)
-    {
-        //pad = .05*width*exp(((i-1)/n))
-        pad = map(i, 0, n, .04*height, .05*height)
-        //strokeWeight(random(1, 2))
-        push()
-        
-            translate(.5*width, .5*height)
-            rotate(random(-.01*PI, .01*PI))
-            translate(-.5*width, -.5*height)
-            rect(pad/2, pad/2, width - pad, height - pad)
-        pop()
-    }
-
     // Draw texture
     image(texture_graphics, 0, 0)
 }
