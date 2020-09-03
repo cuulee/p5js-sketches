@@ -43,7 +43,7 @@ function draw()
 
     background(255)
 
-    t += TWO_PI/200
+    t += TWO_PI/100
 
     push()
     

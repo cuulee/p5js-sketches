@@ -3,7 +3,7 @@ let N = 20;
 
 function setup()
 {
-    canvas = createCanvas(600, 600)
+    canvas = createCanvas(800, 800)
     noLoop();
 
     canvas.parent('sketch-holder');
