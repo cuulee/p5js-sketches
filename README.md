@@ -45,9 +45,9 @@
 
 <img src="abstract_04_07_20/sample.gif" width="400"/>
 
-#### [Abstract 09/07/20](https://marceloprates.github.io/p5js-sketches/abstract_090720/)
+#### [Abstract 09/07/20](https://marceloprates.github.io/p5js-sketches/abstract_09_07_20/)
 
-<img src="abstract_090720/sample.gif" width="400"/>
+<img src="abstract_09_07_20/sample.gif" width="400"/>
 
 #### [Windows 3000 Loading Screen](https://marceloprates.github.io/p5js-sketches/windows_3000_loading_screen/)
 
